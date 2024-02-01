@@ -28,7 +28,7 @@ const sayilar = [
   845, 650, 470.6, 464.5, 423.2, 730.8, 923, 239.5, 358.6, 339.1, 507, 667.7,
   867.7,
 ];
-
+console.log("pi", pi)
 /* ÖRNEK GÖREV: KareninAlani fonksiyonunu kullanarak aşağıdakileri uygulayın: 
 	1. Karenin kenar uzunluğunu fonksiyonun tek parametresi olarak alacak 
 	2. Karenin alanını hesaplayacak (💡 İPUCU: karenin alanı = karenin kenar uzunluğunun karesi)
@@ -50,8 +50,10 @@ function KareninAlani(kenaruzunlugu) {
 	4. Hesaplanan çemberin çevresi döndürülecektir.
 */
 
-function CemberinCevresi(/* kodlar buraya */) {
+function CemberinCevresi(yaricap) {
   /* kodlar buraya */
+  const cevre = 2 * pi * yaricap;
+  return cevre;
 }
 
 /* (Oto test yok) Yukarıdaki CemberinCevresi fonksiyonunu yarıçap = 5 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
@@ -64,9 +66,14 @@ function CemberinCevresi(/* kodlar buraya */) {
 	4. Hesaplanan çemberin alanı döndürülecektir.
 */
 
-function CemberinAlani(/* kodlar buraya */) {
+function CemberinAlani(yaricap, pi) {
   /* kodlar buraya */
+  const alan = pi * (yaricap ** 2);
+  return alan;
 }
+let denemeAlan = CemberinAlani(15);
+console.log(denemeAlan);
+
 
 /* (Oto test yok) Yukarıdaki CemberinAlani fonksiyonunu yarıçap = 15 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
@@ -98,28 +105,69 @@ let ucetambolunenler,
   tekraredensayilar;
 
 // 3a çözümü
+  enkucuk = sayilar[0];
+  enbuyuk = sayilar[0];
 
-/* kodlar buraya */
+for (let i = 1; i < sayilar.length; i++) {
+    if (sayilar[i] < enkucuk) {
+        enkucuk = sayilar[i];
+    }
+
+    if (sayilar[i] > enbuyuk) {
+        enbuyuk = sayilar[i];
+    }
+}
 
 // 3b çözümü:
 
-/* kodlar buraya */
+ucetambolunenler = []
+
+sayilar.forEach(function(sayi) {
+  if (sayi % 3 === 0) {
+      ucetambolunenler.push(sayi);
+  }
+});
+
+//console.log("3'ün Tam Katları: " + ucetambolunenler);
 
 // 3c çözümü:
 
-/* kodlar buraya */
+ucebolunenlerintoplami = ucetambolunenler.reduce(function(toplam, sayi) {
+  return toplam + sayi;
+}, 0);
 
 // 3d çözümü
 
-/* kodlar buraya */
+besyuzdenkucuksayilar = sayilar.filter(function(sayi) {
+  return sayi < 500;
+});
 
 // 3e çözümü
 
-/* kodlar buraya */
+siralisayilar = besyuzdenkucuksayilar.slice().sort(function(a, b) {
+  return a - b;
+});
 
 // 3f çözümü
 
-/* kodlar buraya */
+tekraredensayilar = [];
+
+tekrarSayilari = {};
+
+sayilar.forEach(function(sayi) {
+    if (tekrarSayilari[sayi]) {
+        tekrarSayilari[sayi]++;
+    } else {
+        tekrarSayilari[sayi] = 1;
+    }
+});
+
+for (let sayi in tekrarSayilari) {
+    if (tekrarSayilari[sayi] > 1) {
+        let tekrarString = `${sayi} sayısı ${tekrarSayilari[sayi]} kere tekrar edilmiştir`;
+        tekraredensayilar.push(tekrarString);
+    }
+}
 
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
 
